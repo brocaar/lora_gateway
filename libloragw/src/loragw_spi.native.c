@@ -54,7 +54,8 @@ Maintainer: Sylvain Miermont
 #define READ_ACCESS     0x00
 #define WRITE_ACCESS    0x80
 #define SPI_SPEED       8000000
-char spi_dev_path[50];
+// default SPI path
+char spi_dev_path[50] = "/dev/spidev0.0";
 
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS DEFINITION ------------------------------------------ */
