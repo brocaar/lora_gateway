@@ -535,7 +535,10 @@ enum gps_msg lgw_parse_nmea(const char *serial_buff, int buff_size) {
         memcpy(parser_buf, serial_buff, buff_size);
         parser_buf[buff_size] = '\0';
         nb_fields = str_chop(parser_buf, buff_size, ',', str_index, ARRAY_SIZE(str_index));
-        if (nb_fields != 13) {
+        // Depending the implementation, there are 12 or 13 fields.
+        // If using the uBlox NMEA output directly there are 13 fields, if using
+        // Gpsd, there are 12 fields.
+        if (nb_fields < 12) {
             DEBUG_MSG("Warning: invalid RMC sentence (number of fields)\n");
             return IGNORED;
         }
